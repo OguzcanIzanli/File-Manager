@@ -1,7 +1,7 @@
 import backend from "../services/backend";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 
-const useFolderQuery = (query) => {
+export const useFoldersQuery = (query) => {
   // Access the client
   const queryClient = useQueryClient();
 
@@ -15,4 +15,12 @@ const useFolderQuery = (query) => {
   return { list };
 };
 
-export default useFolderQuery;
+export const useFolderQuery = (id) => {
+  const find = useQuery({
+    queryKey: ["folder", id],
+    queryFn: () => backend.folderService.find(id).then((res) => res.data),
+    enabled: Boolean(id),
+  });
+
+  return { find };
+};

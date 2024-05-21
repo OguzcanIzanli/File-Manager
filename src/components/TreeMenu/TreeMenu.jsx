@@ -1,14 +1,12 @@
 import TreeMenuItem from "./TreeMenuItem";
 import "./TreeMenu.styles.css";
-import useFolderQuery from "../../queries/useFolderQuery";
+import { useFoldersQuery } from "../../queries/useFoldersQuery";
 
 // eslint-disable-next-line react/prop-types
 const TreeMenu = ({ parentId }) => {
-  const folder = useFolderQuery({ parentId });
+  const folder = useFoldersQuery({ parentId });
 
   const items = folder.list.data;
-
-  console.log(items);
 
   return (
     <div className="treeMenu">

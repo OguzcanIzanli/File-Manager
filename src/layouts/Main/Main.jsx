@@ -1,5 +1,6 @@
 import "./Main.styles.css";
 
+// eslint-disable-next-line react/prop-types
 const Main = ({ sidebar, folderName, toolbar, content }) => {
   return (
     <div id="container">
