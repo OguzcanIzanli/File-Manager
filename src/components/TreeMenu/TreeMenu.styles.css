@@ -1,0 +1,13 @@
+.treeMenuItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.treeMenuItemRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.treeMenuSub {
+  margin-left: 15px;
+}
