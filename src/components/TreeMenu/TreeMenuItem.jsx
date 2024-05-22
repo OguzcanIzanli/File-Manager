@@ -5,16 +5,21 @@ import IconFolder from "../../assets/icons/IconFolder";
 import IconFolderOpen from "../../assets/icons/IconFolderOpen";
 import useBoolean from "../../hooks/useBoolean";
 import TreeMenu from "./TreeMenu";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const TreeMenuItem = ({ name, id, defaultExpanded }) => {
   const expanded = useBoolean(defaultExpanded || false);
   const navigate = useNavigate();
+  const params = useParams();
 
   const handleClick = useCallback(() => {
     navigate("/folder/" + id);
   }, []);
+
+  const isCurrent = params.id === id;
+  const Icon = isCurrent ? IconFolderOpen : IconFolder;
+  const fontWeight = isCurrent ? "bold" : "normal";
 
   return (
     <div className="treeMenuItem">
@@ -23,8 +28,12 @@ const TreeMenuItem = ({ name, id, defaultExpanded }) => {
           <button onClick={expanded.setTrue}>
             <IconChevronRight />
           </button>
-          <span className="treeMenuRowTitle" onClick={handleClick}>
-            <IconFolder className="folderIcon" />
+          <span
+            className="treeMenuRowTitle"
+            style={{ fontWeight }}
+            onClick={handleClick}
+          >
+            <Icon className="folderIcon" />
             {name}
           </span>
         </div>
@@ -36,8 +45,12 @@ const TreeMenuItem = ({ name, id, defaultExpanded }) => {
             <button onClick={expanded.setFalse}>
               <IconChevronDown />
             </button>
-            <span className="treeMenuRowTitle" onClick={handleClick}>
-              <IconFolderOpen className="folderIcon" />
+            <span
+              className="treeMenuRowTitle"
+              style={{ fontWeight }}
+              onClick={handleClick}
+            >
+              <Icon className="folderIcon" />
               {name}
             </span>
           </div>
