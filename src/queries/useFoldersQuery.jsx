@@ -3,6 +3,7 @@ import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 
 export const useFolderQuery = (id) => {
   const queryClient = useQueryClient();
+  const query = { parentId: id || "null" };
 
   const find = useQuery({
     queryKey: ["folder", id],
@@ -10,11 +11,16 @@ export const useFolderQuery = (id) => {
     enabled: Boolean(id) && id !== "null",
   });
 
-  const query = { parentId: id || "null" };
   const list = useQuery({
     queryKey: ["folders", query],
     queryFn: () =>
       backend.folderService.list(query).then((res) => res.data.result),
+  });
+
+  const files = useQuery({
+    queryKey: ["files", query],
+    queryFn: () =>
+      backend.fileService.list(query).then((res) => res.data.result),
   });
 
   const addSubFolder = useMutation({
@@ -25,5 +31,5 @@ export const useFolderQuery = (id) => {
     },
   });
 
-  return { find, list, addSubFolder };
+  return { find, list, addSubFolder, files };
 };
