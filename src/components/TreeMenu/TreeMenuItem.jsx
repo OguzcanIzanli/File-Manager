@@ -6,15 +6,19 @@ import IconFolderOpen from "../../assets/icons/IconFolderOpen";
 import useBoolean from "../../hooks/useBoolean";
 import TreeMenu from "./TreeMenu";
 import { useNavigate, useParams } from "react-router-dom";
+import { useView } from "../../context/ViewContext/ViewContext";
 
 // eslint-disable-next-line react/prop-types
 const TreeMenuItem = ({ name, id, defaultExpanded }) => {
   const expanded = useBoolean(defaultExpanded || false);
   const navigate = useNavigate();
   const params = useParams();
+  const { clear } = useView();
 
   const handleClick = useCallback(() => {
     navigate("/folder/" + id);
+    clear();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isCurrent = params.id === id;

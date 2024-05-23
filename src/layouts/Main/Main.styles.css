@@ -43,3 +43,14 @@
   background-color: white;
   border-radius: 8px;
 }
+
+#contentAndPreview {
+  display: flex;
+}
+
+#preview {
+  margin-left: 20px;
+  background-color: white;
+  border-radius: 8px;
+  max-width: 200px;
+}

@@ -1,24 +1,27 @@
-.listView {
+.gridView {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   font-size: 0.8rem;
 }
 
-.listViewTitle {
+.gridViewTitle {
   height: 40px;
   display: flex;
   align-items: center;
   width: 100%;
 }
 
-.listViewItem {
+.gridViewItem {
   display: flex;
+  height: 100px;
   align-items: center;
-  width: 100%;
-  border-top: 1px solid silver;
+  width: 100px;
+  border: 1px solid silver;
+  border-radius: 20px;
+  flex-direction: column;
 }
 
-.listViewItem > img {
+.gridViewItem > img {
   height: 18px;
   margin: 5px 8px;
 }

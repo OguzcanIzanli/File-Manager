@@ -1,11 +1,11 @@
-import "./ListView.styles.css";
+import "./GridView.styles.css";
 import { useView } from "../../context/ViewContext/ViewContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFolderQuery } from "../../queries/useFoldersQuery";
-import ListViewItem from "./ListViewItem";
+import GridViewItem from "./GridViewItem";
 
 // eslint-disable-next-line react/prop-types
-const ListView = ({ files, folders }) => {
+const GridView = ({ files, folders }) => {
   const navigate = useNavigate();
 
   const params = useParams();
@@ -24,14 +24,9 @@ const ListView = ({ files, folders }) => {
   };
 
   return (
-    <div className="listView">
-      <div className="listViewTitle">
-        <input type="checkbox" onChange={bulk} />
-        <span>Name</span>
-      </div>
-
+    <div className="gridView">
       <div
-        className="listViewItem"
+        className="gridViewItem"
         onDoubleClick={() => {
           clear();
           navigate("/folder/" + folder.find.data.parentId || "null");
@@ -46,10 +41,10 @@ const ListView = ({ files, folders }) => {
       </div>
 
       {[...(folders || []), ...(files || [])].map((item) => {
-        return <ListViewItem item={item} />;
+        return <GridViewItem item={item} />;
       })}
     </div>
   );
 };
 
-export default ListView;
+export default GridView;
